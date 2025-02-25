@@ -3,28 +3,24 @@ class Usuario {
     constructor(nome, email, senha) {
         this.nome = nome;
         this.email = email;
-        this.senha = senha; 
-<<<<<<< HEAD
+        this.senha = senha;
     }
-=======
->>>>>>> b7489c41581f340c2f3a867c8493a3f92cc1b976
+        #senha;
 
-    #senha; 
+        autenticar(senha) {
+            return senha === this.senha;
+        }
 
-    autenticar(senha) {
-        return senha === this.senha;
+        alterarSenha(novaSenha) {
+            this.senha = novaSenha;
+            console.log('Senha alterada com sucesso');
+        }
     }
-
-    alterarSenha(novaSenha) {
-        this.senha = novaSenha;
-        console.log('Senha alterada com sucesso');
-    }
-}
 
 // Classe Admin que herda de Usuario
 class Admin extends Usuario {
     constructor(nome, email, senha, nivelAcesso) {
-        super(nome, email, senha); 
+        super(nome, email, senha);
         this.nivelAcesso = nivelAcesso;
     }
 
@@ -42,10 +38,7 @@ class Admin extends Usuario {
 const usuario1 = new Usuario('Julia', 'Miranda@gmail.com', '3536');
 const usuario2 = new Admin('Jéssica', 'Lohanny@gmail.com', '1111', 'alto');
 
-console.log(usuario1.autenticar('3536')); 
-console.log(usuario2.autenticar('1111')); 
-<<<<<<< HEAD
+console.log(usuario1.autenticar('3536'));
+console.log(usuario2.autenticar('1111'));
 usuario2.banirUsuario(usuario1); // Julia foi banida por Jessica
-=======
-usuario2.banirUsuario(usuario1); // Julia foi banida por Jéssica
->>>>>>> b7489c41581f340c2f3a867c8493a3f92cc1b976
+
