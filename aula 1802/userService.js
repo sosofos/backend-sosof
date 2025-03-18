@@ -59,7 +59,25 @@ class userService {
         }
 
     }
-    
+    //alterar e excluir usuarios
+
+    deleleUser (id){
+        try{
+            this.users = this.users.filter(user => user.id !== id);
+            this.saveUsers();
+        }catch (erro){
+            console.log('erro ao excluir usuario', erro)
+        }
+    }
+    putUser (nome, email, senha, endereco, telefone, cpf){
+        try{
+            this.users = this.users.filter(user => user.id !== nome, email, senha, endereco, telefone, cpf);
+            this.saveUsers();
+        }
+        catch (erro){
+            console.log('erro ao alterar usuario', erro)
+        }
+    }
 }
 
 
