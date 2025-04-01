@@ -3,6 +3,7 @@ const path = require('path'); //modulo para manipular caminhos
 const fs = require('fs'); //modulo para manipular arquivos file system
 const { json } = require("stream/consumers");
 const bcrypt = require('bcryptjs');
+const { error } = require("console");
 
 class userService {
     constructor() {
@@ -85,7 +86,24 @@ class userService {
             console.log('erro ao alterar usuario', erro)
         }
     }
+
+    async updateUser(id, nome, email, senha, endereco, telefone, cpf) {
+        try{
+            let senhaCripto = user.senha;
+            if (senha && senha !== user.)
+        }
+    }
 }
 
 
 module.exports = new userService;
+
+// editar o codigo upate proxima aula
+//  const user = this.users.some(u => u.id !== id
+// && u.cpf === cpf );
+// senhaCripto await bycrypt.hash(senha, 10);
+// user service:
+//  if (cpf !== user.cpf 
+// const cpfexistente = this.users.some
+// 
+// 
