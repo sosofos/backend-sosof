@@ -43,6 +43,10 @@ class userService {
 
     async addUser(nome, email, senha, endereco, telefone, cpf) {
         try {
+            const cpfExiste = this.users.some(user => user.cpf === cpf)  // cpf como parametro
+            if (cpfExiste){
+                throw new Error("CPF ja cadastrado");
+            }
             const senhaCripto = await bcrypt.hash(senha, 10);
             const user = new User(this.nextId++, nome, email, senhaCripto, endereco, telefone, cpf);
             this.users.push(user); //adiciona o usuario
@@ -50,6 +54,7 @@ class userService {
             return user;
         } catch (erro) {
             console.log('erro ao cadastrar o usuario', erro);
+            throw erro
         }
     }
 

@@ -1,5 +1,5 @@
 const express = require("express");
-const userService = require("./userservice");
+const userService = require("./userService");
 
 const app = express();
 app.use(express.json());
@@ -7,15 +7,20 @@ app.use(express.json());
 //rota para criar usuario
 
 app.post("/users", async (req, res) => {
-    const { nome, email, senha, endereco, telefone, cpf } = req.body;
-    if (!nome || !email || !senha || !endereco || !telefone || !cpf) {
-        return res.status(400).json
-            ({ error: "os dados são obrigatorios" })
-    }
+    try {
+        const { nome, email, senha, endereco, telefone, cpf } = req.body;
 
-    const user = await userService.addUser(nome, email, senha, endereco, telefone, cpf);
-    res.status(200).json({ user });
-})
+        if (!nome || !email || !senha || !endereco || !telefone || !cpf) {
+            return res.status(400).json
+                ({ error: "Todos os campos são obrigatórios" })
+        }
+        const user = await userService.addUser(nome, email, senha, endereco, telefone, cpf);
+        res.status(200).json({ user });
+
+    } catch (erro) {
+        res.status(400).json({ error: erro.message });
+    }
+});
 
 //rota para listar todos os arquivos
 app.get("/users", (req, res) => {
